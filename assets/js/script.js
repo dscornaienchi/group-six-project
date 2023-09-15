@@ -18,8 +18,8 @@ $(function(){
         console.log("Forecast data", forecastData);
         // process and display the 5-day forecast
         var dayNumber = 1;
-        for (var i = 0; i < forecastData.list.length; i++) { // Fixed 'List' to 'list'
-            var forecastItem = forecastData.list[i]; // Fixed 'List' to 'list'
+        for (var i = 0; i < forecastData.list.length; i++) {
+            var forecastItem = forecastData.list[i];
             if (forecastItem.dt_txt.includes("15:00:00")) {
                 var forecastDate = forecastItem.dt_txt;
                 var forecastIconCode = forecastItem.weather[0].icon;
