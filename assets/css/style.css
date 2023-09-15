@@ -1,0 +1,43 @@
+body {
+    font-family: sans-serif;
+    padding: 5px;
+}
+
+header { 
+    background-color: rgba(22, 44, 142, 0.883);
+    color:white;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+    padding: 7px;
+}
+
+header p {
+    font-size: 18px; /* Adjust the font size as needed */
+    text-align: center;
+    margin-top: 10px; /* Add spacing between the heading and the tagline */
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bolder;
+}
+
+#save-preferences-button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#city-forecast-shell {
+    padding: 10px;
+}
+
+.card {
+    margin-right: 20px;
+    background-color: rgb(218, 214, 214);
+    padding: 10px;
+    white-space: nowrap;
+}
