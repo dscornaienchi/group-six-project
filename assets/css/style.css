@@ -41,3 +41,7 @@ h2 {
     padding: 10px;
     white-space: nowrap;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
