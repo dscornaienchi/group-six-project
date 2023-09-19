@@ -77,71 +77,80 @@ $(function(){
 });
 
 
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-let map;
-let service;
-let infowindow;
-
+// google maps api
 function initMap() {
-  const sydney = new google.maps.LatLng(-33.867, 151.195);
-
-  infowindow = new google.maps.InfoWindow();
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: sydney,
-    zoom: 15,
-  });
-
-  const request = {
-    query: "Museum of Contemporary Art Australia",
-    fields: ["name", "geometry"],
+  // Create the map.
+  const cityMap = {
+    lat: 30.2672,
+    lng: -97.7431
   };
-// get place w/ place service API
-  service = new google.maps.places.PlacesService(map);
-
-//   create marker on map w/ query API
-  service.findPlaceFromQuery(request, (results, status) => {
-    console.log(results);
-    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-      for (let i = 0; i < results.length; i++) {
-        createMarker(results[i]);
-      }
-
-      map.setCenter(results[0].geometry.location);
-    }
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: cityMap,
+    zoom: 12,
+    // mapId: "d98de8ecbc6ba55",
   });
-//   get placeID
-var service = new google.maps.places.PlacesService(map);
+  // Create the places service.
+  const service = new google.maps.places.PlacesService(map);
+  let getNextPage;
+  const moreButton = document.getElementById("more");
 
-service.textSearch(request, getPlaceID);
-function getPlaceID(results, status) {
-    console.log(results);
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      var marker = new google.maps.Marker({
-        map: map,
-        place: {
-          placeId: results[0].place_id,
-          location: results[0].geometry.location
-        }
+  moreButton.onclick = function() {
+    moreButton.disabled = true;
+    if (getNextPage) {
+      getNextPage();
+    }
+  };
+
+  // Perform a nearby search.
+  service.nearbySearch({
+      location: cityMap,
+      radius: 500,
+      type: "cafe"
+    },
+    (results, status, pagination) => {
+      if (status !== "OK" || !results) return;
+
+      addPlaces(results, map);
+      moreButton.disabled = !pagination || !pagination.hasNextPage;
+      if (pagination && pagination.hasNextPage) {
+        getNextPage = () => {
+          // Note: nextPage will call the same handler function as the initial call
+          pagination.nextPage();
+        };
+      }
+    },
+  );
+}
+
+function addPlaces(places, map) {
+  const placesList = document.getElementById("places");
+
+  for (const place of places) {
+    if (place.geometry && place.geometry.location) {
+    //   const image = {
+    //     url: place.icon,
+    //     size: new google.maps.Size(71, 71),
+    //     origin: new google.maps.Point(0, 0),
+    //     anchor: new google.maps.Point(17, 34),
+    //     scaledSize: new google.maps.Size(25, 25),
+    //   };
+
+      // new google.maps.Marker({
+      //   map,
+      //   icon: image,
+      //   title: place.name,
+      //   position: place.geometry.location,
+      // });
+
+      const li = document.createElement("li");
+
+      li.textContent = place.name;
+      placesList.appendChild(li);
+      li.addEventListener("click", () => {
+        map.setCenter(place.geometry.location);
       });
     }
-}
-}
-
-
-function createMarker(place) {
-  if (!place.geometry || !place.geometry.location) return;
-
-  const marker = new google.maps.Marker({
-    map,
-    position: place.geometry.location,
-  });
-
-  google.maps.event.addListener(marker, "click", () => {
-    infowindow.setContent(place.name || "");
-    infowindow.open(map);
-  });
+  }
 }
 
 window.initMap = initMap;
