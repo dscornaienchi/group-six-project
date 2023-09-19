@@ -1,5 +1,5 @@
 body {
-    font-family: sans-serif;
+    font-family: 'Oswald', sans-serif;
     padding: 5px;
 }
 
@@ -9,6 +9,7 @@ header {
 }
 
 h1 {
+    font-family: 'Teko', sans-serif;
     font-size: 30px;
     font-weight: bolder;
     text-align: center;
