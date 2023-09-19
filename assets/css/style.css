@@ -42,3 +42,7 @@ h2 {
     padding: 10px;
     white-space: nowrap;
 }
+
+#map {
+    height: 500px;
+}

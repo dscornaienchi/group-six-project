@@ -1,7 +1,7 @@
 $(function(){
 
     var APIKey = "e8dad390ebbd6c69a9686f2a12eedb94";
-
+    var yelpAPIKey = "PHJuz6p-zp_EZyEZU15LhXV9SbiT9I_Q1QkB22KNeuNYM7Pw90btQZuRHRSLV-SwCVlVW-WnQu8lULYo_ODtRE7xRZ7FyC6GBQrpueahhazOAelR2KoO7zRdeOgIZXYx"
     // function to display the forecast in the City Forecast section
     function updateCityForecast(dayNumber, forecastDate, forecastIconCode, forecastTempKelvin, forecastWind, forecastHumidity) {
         var forecastTempFahrenheit = Math.round((forecastTempKelvin - 273.15) * 9/5 + 32);
@@ -77,4 +77,71 @@ $(function(){
 });
 
 
+// This example requires the Places library. Include the libraries=places
+// parameter when you first load the API. For example:
+// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+let map;
+let service;
+let infowindow;
 
+function initMap() {
+  const sydney = new google.maps.LatLng(-33.867, 151.195);
+
+  infowindow = new google.maps.InfoWindow();
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: sydney,
+    zoom: 15,
+  });
+
+  const request = {
+    query: "Museum of Contemporary Art Australia",
+    fields: ["name", "geometry"],
+  };
+// get place w/ place service API
+  service = new google.maps.places.PlacesService(map);
+
+//   create marker on map w/ query API
+  service.findPlaceFromQuery(request, (results, status) => {
+    console.log(results);
+    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+      for (let i = 0; i < results.length; i++) {
+        createMarker(results[i]);
+      }
+
+      map.setCenter(results[0].geometry.location);
+    }
+  });
+//   get placeID
+var service = new google.maps.places.PlacesService(map);
+
+service.textSearch(request, getPlaceID);
+function getPlaceID(results, status) {
+    console.log(results);
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      var marker = new google.maps.Marker({
+        map: map,
+        place: {
+          placeId: results[0].place_id,
+          location: results[0].geometry.location
+        }
+      });
+    }
+}
+}
+
+
+function createMarker(place) {
+  if (!place.geometry || !place.geometry.location) return;
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+  });
+
+  google.maps.event.addListener(marker, "click", () => {
+    infowindow.setContent(place.name || "");
+    infowindow.open(map);
+  });
+}
+
+window.initMap = initMap;
