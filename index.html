@@ -16,67 +16,68 @@
     <link rel="stylesheet" href="./assets/dist/output.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <title>VoyageMate</title>
+    <title>Dumpster Diver</title>
 </head>
 
 <body>
     <header class="bg-blue-500 text-white p-4">
-        <h1 class="text-5xl font-bold">VoyageMate</h1>
-        <p class="text-sm">The trip companion that cares about your preferences</p>
+        <h1 class="text-6xl font-bold">Dumpster Diver</h1>
+        <p class="text-md">Tired of the crowds at the best places in town? Why not try the worst!</p>
     </header>
 
     <main class="container mx-auto p-4">
         <div class="grid grid-cols-1 md:grid-cols-2">
-            <section id="preferences" class="p-4">
-                <h2 class="text-xl font-semibold">City Preferences</h2>
-                <form id="preferences-dropdowns">
-                    <div class="mb-4">
-                        <label for="dropdown-1" class="block">How Bad?</label>
-                        <select class="border rounded w-full py-2 px-3" id="dropdown-1" name="dropdown-1">
-                            <option value="item-1">1 Star</option>
-                            <option value="item-2">2 Stars</option>
-                            <option value="item-3">3 Stars</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="city-search" class="block">City Search</label>
-                        <input type="text" class="form-control" id="city-input" name="city-input" placeholder="Enter city name" />
-                    </div>
-                    <div class="mb-2">
-                      <button class="bg-blue-500 text-white py-2 px-4 rounded-full w-full" id="save-preferences-button">Search</button>
-                  </div>
-                </form>
-            </section>
-
+          <section id="preferences" class="p-4">
+            <h2 class="text-3xl font-semibold">City Preferences</h2>
+            <form id="preferences-dropdowns">
+                <div class="mb-4 mt-4">
+                    <label for="dropdown-1" class="block">How Bad?</label>
+                    <select class="border rounded w-full py-2 px-3" id="dropdown-1" name="dropdown-1">
+                        <option value="item-1">1 Star</option>
+                        <option value="item-2">2 Stars</option>
+                        <option value="item-3">3 Stars</option>
+                    </select>
+                </div>
+        
+                <div class="mb-4">
+                    <label for="city-search" class="block mt-4">City Search</label>
+                    <input type="text" class="border rounded w-full py-2 px-3" id="city-input" name="city-input" placeholder="Enter city name" />
+                </div>
+                <div class="mb-2">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full w-full" id="save-preferences-button">Search</button>
+                </div>
+            </form>
+        </section>
+        
             <section id="city-forecast" class="p-4 md:order-2">
-                <h2 class="text-xl font-semibold">5-Day Forecast</h2>
+                <h2 class="text-3xl font-semibold">5-Day Forecast</h2>
                 <div class="flex">
-                  <article class="bg-white rounded-lg p-4 mr-4" id="forecast-day-1">
+                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-1">
                     <p class="text-sm">Date </p>
                     <p class="text-sm">Temp: </p>
                     <p class="text-sm">Wind: </p>
                     <p class="text-sm">Humidity: </p>
                   </article>
-                  <article class="bg-white rounded-lg p-4 mr-4" id="forecast-day-2">
+                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-2">
                     <p class="text-sm">Date </p>
                     <p class="text-sm">Temp: </p>
                     <p class="text-sm">Wind: </p>
                     <p class="text-sm">Humidity: </p>
                   </article>
-                  <article class="bg-white rounded-lg p-4 mr-4" id="forecast-day-3">
+                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-3">
                     <p class="text-sm">Date </p>
                     <p class="text-sm">Temp: </p>
                     <p class="text-sm">Wind: </p>
                     <p class="text-sm">Humidity: </p>
                   </article>
-                  <article class="bg-white rounded-lg p-4 mr-4" id="forecast-day-4">
+                  <article class="bg-white rounded-lg p-4 mr-4
+                  mt-4" id="forecast-day-4">
                     <p class="text-sm">Date </p>
                     <p class="text-sm">Temp: </p>
                     <p class="text-sm">Wind: </p>
                     <p class="text-sm">Humidity: </p>
                   </article>
-                  <article class="bg-white rounded-lg p-4 mr-4" id="forecast-day-5">
+                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-5">
                     <p class="text-sm">Date </p>
                     <p class="text-sm">Temp: </p>
                     <p class="text-sm">Wind: </p>
@@ -90,19 +91,20 @@
         <div class="grid grid-cols-1 md:grid-cols-2 mt-4">
           <div class="p-4">
             <section id="cities" class="flex flex-col">
-                <h2 class="text-xl font-semibold">Reviews</h2>
+                <h2 class="text-3xl font-semibold">Reviews</h2>
+                <ul id="reviews" class="mt-4"></ul>
                 <!-- Placeholder for Reviews -->
             </section>
           </div>
 
           <div class="p-4">
             <section id="results" class="flex flex-col">
-                <h2 class="text-xl font-semibold">Results</h2>
-                <div id="map"></div>
+                <h2 class="text-3xl font-semibold">Map View</h2>
+                <div id="map" class="mt-4"></div>
                 <div id="sidebar">
-                  <h2>Results</h2>
-                  <ul id="places"></ul>
-                  <button id="more">Load more results</button>
+                  <h2 class="text-3xl font-semibold mt-4">Places</h2>
+                  <ul id="places" class="mt-4"></ul>
+                  <button id="more" class="bg-blue-500 text-white py-2 px-4 rounded-full w-full mt-3" >Load more results</button>
                 </div>
             </section>
           </div>
