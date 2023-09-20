@@ -171,5 +171,3 @@ function addPlaces(places, map, selectedType) {
 }
 
 window.initMap = initMap;
-
-
