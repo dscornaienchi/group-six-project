@@ -2,22 +2,22 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Teko:wght@600&display=swap" rel="stylesheet">
-  <!-- link to css file-->
-  <link rel="stylesheet" href="./assets/dist/output.css">
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <title>Dumpster Diver</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Teko:wght@600&display=swap" rel="stylesheet">
+    <!-- link to css file-->
+    <link rel="stylesheet" href="./assets/dist/output.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <title>Lone Star Diver</title>
 </head>
 
 
@@ -35,9 +35,16 @@
                 <div class="mb-4 mt-4">
                     <label for="dropdown-1" class="block">How Bad?</label>
                     <select class="border rounded w-full py-2 px-3" id="dropdown-1" name="dropdown-1">
-                        <option value="item-1">1 Star</option>
-                        <option value="item-2">2 Stars</option>
-                        <option value="item-3">3 Stars</option>
+                        <option value="1star">1 Star</option>
+                        <option value="2stars">2 Stars</option>
+                        <option value="3stars">3 Stars</option>
+                    </select>
+                    <label for="dropdown-2" class="block mt-4">What Type of Place?</label>
+                    <select class="border rounded w-full py-2 px-3" id="dropdown-2" name="dropdown-2">
+                        <option value="bar">Bar</option>
+                        <option value="cafe">Cafe</option>
+                        <option value="restaurant">Restaurant</option>
+                        <option value="store">Store</option>
                     </select>
                 </div>
         
@@ -98,25 +105,23 @@
         </ul>
       </section>
 
-      <section id="results" class="bg-white p-4 rounded-lg shadow-xl">
-        <h2 class="text-3xl font-semibold">Map View</h2>
-        <div id="map" class="h-64 rounded-lg shadow-lg mt-4"></div>
-        <div id="sidebar">
-          <h2 class="text-3xl font-semibold mt-4">Places</h2>
-          <ul id="places" class="mt-4">
-            
-          </ul>
-          <button id="more" class="bg-blue-500 text-white py-2 px-4 rounded-full w-full mt-3">Load more results</button>
+          <div class="p-4">
+            <section id="results" class="bg-white p-4 rounded-lg shadow-xl">
+                <h2 class="text-3xl font-semibold">Map View</h2>
+                <div id="map" class="h-64 rounded-lg shadow-lg mt-4"></div>
+                <div id="sidebar">
+                  <h2 class="text-3xl font-semibold mt-4">Places</h2>
+                  <ul id="places" class="mt-4"></ul>
+                </div>
+            </section>
+          </div>
         </div>
-      </section>
-    </div>
-  </main>
+    </main>
 
-  <div class="grid grid-cols-1">
-    <footer class="p-4 text-center bg-white">
-      <p>&copy; VoyageMate America LLC</p>
-    </footer>
-  </div>
+    <div class="grid grid-cols-1">
+      <footer class="p-4">
+          <p class="text-center">&copy; LoneStar Enterprises LLC</p>
+      </footer>
 
   <!-- J Query-->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -131,6 +136,3 @@
 </body>
 
 </html>
-
-
-
