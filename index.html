@@ -20,75 +20,81 @@
   <title>Dumpster Diver</title>
 </head>
 
+
 <body class="bg-gray-100">
   <header class="bg-blue-500 text-white p-4 text-center">
     <h1 class="text-5xl font-bold">Dumpster Diver</h1>
     <p class="text-lg">Tired of the crowds at the best places in town? Why not try the worst!</p>
   </header>
 
-  <main class="container mx-auto p-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <section id="preferences" class="bg-white p-4 rounded-lg shadow-lg">
-        <h2 class="text-3xl font-semibold mb-4">City Preferences</h2>
-        <form id="preferences-dropdowns">
-          <div class="mb-4">
-            <label for="dropdown-1" class="block">How Bad?</label>
-            <select class="border rounded w-full py-2 px-3" id="dropdown-1" name="dropdown-1">
-              <option value="item-1">1 Star</option>
-              <option value="item-2">2 Stars</option>
-              <option value="item-3">3 Stars</option>
-            </select>
-          </div>
+<body>
+    <header class="bg-blue-500 text-white p-4">
+        <h1 class="text-6xl font-bold">Lone Star Diver</h1>
+        <p class="text-md">Tired of the crowds at the best places in town? Why not try the worst!</p>
+    </header>
 
-          <div class="mb-4">
-            <label for="city-search" class="block">City Search</label>
-            <input type="text" class="border rounded w-full py-2 px-3" id="city-input" name="city-input"
-              placeholder="Enter city name" />
-          </div>
-          <div class="mb-2">
-            <button class="bg-blue-500 text-white py-2 px-4 rounded-full w-full"
-              id="save-preferences-button">Search</button>
-          </div>
-        </form>
-      </section>
-
-      <section id="city-forecast" class="bg-white p-4 md:order-2 rounded-lg shadow-lg overflow-auto">
-        <h2 class="text-3xl font-semibold">5-Day Forecast</h2>
-        <div class="flex">
-          <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-1">
-            <p class="text-sm">Date </p>
-            <p class="text-sm">Temp: </p>
-            <p class="text-sm">Wind: </p>
-            <p class="text-sm">Humidity: </p>
-          </article>
-          <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-2">
-            <p class="text-sm">Date </p>
-            <p class="text-sm">Temp: </p>
-            <p class="text-sm">Wind: </p>
-            <p class="text-sm">Humidity: </p>
-          </article>
-          <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-3">
-            <p class="text-sm">Date </p>
-            <p class="text-sm">Temp: </p>
-            <p class="text-sm">Wind: </p>
-            <p class="text-sm">Humidity: </p>
-          </article>
-          <article class="bg-white rounded-lg p-4 mr-4
-          mt-4" id="forecast-day-4">
-            <p class="text-sm">Date </p>
-            <p class="text-sm">Temp: </p>
-            <p class="text-sm">Wind: </p>
-            <p class="text-sm">Humidity: </p>
-          </article>
-          <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-5">
-            <p class="text-sm">Date </p>
-            <p class="text-sm">Temp: </p>
-            <p class="text-sm">Wind: </p>
-            <p class="text-sm">Humidity: </p>
-          </article>
+    <main class="container mx-auto p-4">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <section id="preferences" class="p-4">
+            <h2 class="text-3xl font-semibold">City Preferences</h2>
+            <form id="preferences-dropdowns">
+                <div class="mb-4 mt-4">
+                    <label for="dropdown-1" class="block">How Bad?</label>
+                    <select class="border rounded w-full py-2 px-3" id="dropdown-1" name="dropdown-1">
+                        <option value="item-1">1 Star</option>
+                        <option value="item-2">2 Stars</option>
+                        <option value="item-3">3 Stars</option>
+                    </select>
+                </div>
+        
+                <div class="mb-4">
+                    <label for="city-search" class="block mt-4">City Search</label>
+                    <input type="text" class="border rounded w-full py-2 px-3" id="city-input" name="city-input" placeholder="Enter city name" />
+                </div>
+                <div class="mb-2">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full w-full" id="save-preferences-button">Search</button>
+                </div>
+            </form>
+        </section>
+        
+            <section id="city-forecast" class="p-4 md:order-2">
+                <h2 class="text-3xl font-semibold">5-Day Forecast</h2>
+                <div class="flex">
+                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-1">
+                    <p class="text-sm">Date </p>
+                    <p class="text-sm">Temp: </p>
+                    <p class="text-sm">Wind: </p>
+                    <p class="text-sm">Humidity: </p>
+                  </article>
+                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-2">
+                    <p class="text-sm">Date </p>
+                    <p class="text-sm">Temp: </p>
+                    <p class="text-sm">Wind: </p>
+                    <p class="text-sm">Humidity: </p>
+                  </article>
+                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-3">
+                    <p class="text-sm">Date </p>
+                    <p class="text-sm">Temp: </p>
+                    <p class="text-sm">Wind: </p>
+                    <p class="text-sm">Humidity: </p>
+                  </article>
+                  <article class="bg-white rounded-lg p-4 mr-4
+                  mt-4" id="forecast-day-4">
+                    <p class="text-sm">Date </p>
+                    <p class="text-sm">Temp: </p>
+                    <p class="text-sm">Wind: </p>
+                    <p class="text-sm">Humidity: </p>
+                  </article>
+                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-5">
+                    <p class="text-sm">Date </p>
+                    <p class="text-sm">Temp: </p>
+                    <p class="text-sm">Wind: </p>
+                    <p class="text-sm">Humidity: </p>
+                  </article>
+                </div>
+              </section>
+              
         </div>
-      </section>
-    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
       <section id="cities" class="bg-white p-4 rounded-lg shadow-lg">
