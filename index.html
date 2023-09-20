@@ -1,134 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Teko:wght@600&display=swap" rel="stylesheet">
-    <!-- link to css file-->
-    <link rel="stylesheet" href="./assets/dist/output.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <title>Dumpster Diver</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Teko:wght@600&display=swap" rel="stylesheet">
+  <!-- link to css file-->
+  <link rel="stylesheet" href="./assets/dist/output.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <title>Dumpster Diver</title>
 </head>
 
-<body>
-    <header class="bg-blue-500 text-white p-4">
-        <h1 class="text-6xl font-bold">Dumpster Diver</h1>
-        <p class="text-md">Tired of the crowds at the best places in town? Why not try the worst!</p>
-    </header>
+<body class="bg-gray-100">
+  <header class="bg-blue-500 text-white p-4 text-center">
+    <h1 class="text-5xl font-bold">Dumpster Diver</h1>
+    <p class="text-lg">Tired of the crowds at the best places in town? Why not try the worst!</p>
+  </header>
 
-    <main class="container mx-auto p-4">
-        <div class="grid grid-cols-1 md:grid-cols-2">
-          <section id="preferences" class="p-4">
-            <h2 class="text-3xl font-semibold">City Preferences</h2>
-            <form id="preferences-dropdowns">
-                <div class="mb-4 mt-4">
-                    <label for="dropdown-1" class="block">How Bad?</label>
-                    <select class="border rounded w-full py-2 px-3" id="dropdown-1" name="dropdown-1">
-                        <option value="item-1">1 Star</option>
-                        <option value="item-2">2 Stars</option>
-                        <option value="item-3">3 Stars</option>
-                    </select>
-                </div>
-        
-                <div class="mb-4">
-                    <label for="city-search" class="block mt-4">City Search</label>
-                    <input type="text" class="border rounded w-full py-2 px-3" id="city-input" name="city-input" placeholder="Enter city name" />
-                </div>
-                <div class="mb-2">
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full w-full" id="save-preferences-button">Search</button>
-                </div>
-            </form>
-        </section>
-        
-            <section id="city-forecast" class="p-4 md:order-2">
-                <h2 class="text-3xl font-semibold">5-Day Forecast</h2>
-                <div class="flex">
-                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-1">
-                    <p class="text-sm">Date </p>
-                    <p class="text-sm">Temp: </p>
-                    <p class="text-sm">Wind: </p>
-                    <p class="text-sm">Humidity: </p>
-                  </article>
-                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-2">
-                    <p class="text-sm">Date </p>
-                    <p class="text-sm">Temp: </p>
-                    <p class="text-sm">Wind: </p>
-                    <p class="text-sm">Humidity: </p>
-                  </article>
-                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-3">
-                    <p class="text-sm">Date </p>
-                    <p class="text-sm">Temp: </p>
-                    <p class="text-sm">Wind: </p>
-                    <p class="text-sm">Humidity: </p>
-                  </article>
-                  <article class="bg-white rounded-lg p-4 mr-4
-                  mt-4" id="forecast-day-4">
-                    <p class="text-sm">Date </p>
-                    <p class="text-sm">Temp: </p>
-                    <p class="text-sm">Wind: </p>
-                    <p class="text-sm">Humidity: </p>
-                  </article>
-                  <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-5">
-                    <p class="text-sm">Date </p>
-                    <p class="text-sm">Temp: </p>
-                    <p class="text-sm">Wind: </p>
-                    <p class="text-sm">Humidity: </p>
-                  </article>
-                </div>
-              </section>
-              
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 mt-4">
-          <div class="p-4">
-            <section id="cities" class="flex flex-col">
-                <h2 class="text-3xl font-semibold">Reviews</h2>
-                <ul id="reviews" class="mt-4"></ul>
-                <!-- Placeholder for Reviews -->
-            </section>
+  <main class="container mx-auto p-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section id="preferences" class="bg-white p-4 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-semibold mb-4">City Preferences</h2>
+        <form id="preferences-dropdowns">
+          <div class="mb-4">
+            <label for="dropdown-1" class="block">How Bad?</label>
+            <select class="border rounded w-full py-2 px-3" id="dropdown-1" name="dropdown-1">
+              <option value="item-1">1 Star</option>
+              <option value="item-2">2 Stars</option>
+              <option value="item-3">3 Stars</option>
+            </select>
           </div>
 
-          <div class="p-4">
-            <section id="results" class="flex flex-col">
-                <h2 class="text-3xl font-semibold">Map View</h2>
-                <div id="map" class="mt-4"></div>
-                <div id="sidebar">
-                  <h2 class="text-3xl font-semibold mt-4">Places</h2>
-                  <ul id="places" class="mt-4"></ul>
-                  <button id="more" class="bg-blue-500 text-white py-2 px-4 rounded-full w-full mt-3" >Load more results</button>
-                </div>
-            </section>
+          <div class="mb-4">
+            <label for="city-search" class="block">City Search</label>
+            <input type="text" class="border rounded w-full py-2 px-3" id="city-input" name="city-input"
+              placeholder="Enter city name" />
           </div>
-        </div>
-    </main>
+          <div class="mb-2">
+            <button class="bg-blue-500 text-white py-2 px-4 rounded-full w-full"
+              id="save-preferences-button">Search</button>
+          </div>
+        </form>
+      </section>
 
-    <div class="grid grid-cols-1">
-      <footer class="p-4">
-          <p class="text-center">&copy; VoyageMate America LLC</p>
-      </footer>
+      <section id="city-forecast" class="bg-white p-4 md:order-2 rounded-lg shadow-lg overflow-auto">
+        <h2 class="text-3xl font-semibold">5-Day Forecast</h2>
+        <div class="flex">
+          <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-1">
+            <p class="text-sm">Date </p>
+            <p class="text-sm">Temp: </p>
+            <p class="text-sm">Wind: </p>
+            <p class="text-sm">Humidity: </p>
+          </article>
+          <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-2">
+            <p class="text-sm">Date </p>
+            <p class="text-sm">Temp: </p>
+            <p class="text-sm">Wind: </p>
+            <p class="text-sm">Humidity: </p>
+          </article>
+          <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-3">
+            <p class="text-sm">Date </p>
+            <p class="text-sm">Temp: </p>
+            <p class="text-sm">Wind: </p>
+            <p class="text-sm">Humidity: </p>
+          </article>
+          <article class="bg-white rounded-lg p-4 mr-4
+          mt-4" id="forecast-day-4">
+            <p class="text-sm">Date </p>
+            <p class="text-sm">Temp: </p>
+            <p class="text-sm">Wind: </p>
+            <p class="text-sm">Humidity: </p>
+          </article>
+          <article class="bg-white rounded-lg p-4 mr-4 mt-4" id="forecast-day-5">
+            <p class="text-sm">Date </p>
+            <p class="text-sm">Temp: </p>
+            <p class="text-sm">Wind: </p>
+            <p class="text-sm">Humidity: </p>
+          </article>
+        </div>
+      </section>
     </div>
 
-    <!-- J Query-->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!--Link to Javascript file-->
-    <script src="./assets/js/script.js"></script>
-    <!-- Day JS -->
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"></script>
-    <!-- google maps script -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqtdI1aBEs2FFMXL3QYWPcv7pCW_ZWtk0&callback=initMap&libraries=places"></script>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      <section id="cities" class="bg-white p-4 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-semibold">Reviews</h2>
+        <ul id="reviews" class="mt-4">
+         
+        </ul>
+      </section>
 
+      <section id="results" class="bg-white p-4 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-semibold">Map View</h2>
+        <div id="map" class="h-64 rounded-lg shadow-lg mt-4"></div>
+        <div id="sidebar">
+          <h2 class="text-3xl font-semibold mt-4">Places</h2>
+          <ul id="places" class="mt-4">
+            
+          </ul>
+          <button id="more" class="bg-blue-500 text-white py-2 px-4 rounded-full w-full mt-3">Load more results</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="grid grid-cols-1">
+    <footer class="p-4 text-center bg-white">
+      <p>&copy; VoyageMate America LLC</p>
+    </footer>
+  </div>
+
+  <!-- J Query-->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!--Link to Javascript file-->
+  <script src="./assets/js/script.js"></script>
+  <!-- Day JS -->
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"></script>
+  <!-- google maps script -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqtdI1aBEs2FFMXL3QYWPcv7pCW_ZWtk0&callback=initMap&libraries=places"></script>
+  "></script>
 </body>
-</html>
 
+</html>
 
 
 
