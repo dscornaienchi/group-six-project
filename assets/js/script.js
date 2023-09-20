@@ -84,7 +84,7 @@ function initMap() {
   };
   const map = new google.maps.Map(document.getElementById("map"), {
     center: cityMap,
-    zoom: 12,
+    zoom: 13,
     // mapId: "d98de8ecbc6ba55",
   });
   // Create the places service.
@@ -109,6 +109,7 @@ function initMap() {
       if (status !== "OK" || !results) return;
 
       addPlaces(results, map);
+      console.log(results);
       moreButton.disabled = !pagination || !pagination.hasNextPage;
       if (pagination && pagination.hasNextPage) {
         getNextPage = () => {
