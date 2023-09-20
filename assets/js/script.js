@@ -127,7 +127,6 @@ function initMap(lat, lon) {
 
 function addPlaces(places, map) {
   const placesList = document.getElementById("places");
-
   for (const place of places) {
     if (place.geometry && place.geometry.location) {
     //   const image = {
@@ -147,7 +146,7 @@ function addPlaces(places, map) {
 
       const li = document.createElement("li");
 
-      li.textContent = place.name;
+      li.textContent = place.name+" "+place.rating;
       placesList.appendChild(li);
       li.addEventListener("click", () => {
         map.setCenter(place.geometry.location);
