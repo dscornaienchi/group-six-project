@@ -16,6 +16,9 @@ $('#preferences-dropdowns').on('submit', function (event) {
                   var lat = cityData.coord.lat;
                   var lon = cityData.coord.lon;
 
+                  // call initMap with lat and lon
+                  initMap(lat,lon);
+
                   // Construct the API URL with the latitude and longitude
                   var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
 
@@ -51,6 +54,8 @@ $('#preferences-dropdowns').on('submit', function (event) {
               console.log(error);
               alert('Error fetching data. Please try again');
           });
+  } else {
+    alert('City coordinates not found.');
   }
 });
 
@@ -76,15 +81,15 @@ function updateCityForecast(dayNumber, forecastDate, forecastIconCode, forecastT
 
 
 // google maps api
-function initMap() {
+function initMap(lat, lon) {
   // Create the map.
   const cityMap = {
-    lat: 30.2672,
-    lng: -97.7431
+    lat: lat,
+    lng: lon,
   };
   const map = new google.maps.Map(document.getElementById("map"), {
     center: cityMap,
-    zoom: 13,
+    zoom: 12,
     // mapId: "d98de8ecbc6ba55",
   });
   // Create the places service.
@@ -109,7 +114,6 @@ function initMap() {
       if (status !== "OK" || !results) return;
 
       addPlaces(results, map);
-      console.log(results);
       moreButton.disabled = !pagination || !pagination.hasNextPage;
       if (pagination && pagination.hasNextPage) {
         getNextPage = () => {
