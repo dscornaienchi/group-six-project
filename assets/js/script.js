@@ -152,9 +152,9 @@ function addPlaces(places, map, selectedType) {
       //   icon: image,
       //   title: place.name,
       //   position: place.geometry.location,
-      // });
+      };
 
-
+    }
   placesList.innerHTML = '';
 
 
