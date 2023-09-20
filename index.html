@@ -16,12 +16,12 @@
     <link rel="stylesheet" href="./assets/dist/output.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <title>Dumpster Diver</title>
+    <title>Lone Star Diver</title>
 </head>
 
 <body>
     <header class="bg-blue-500 text-white p-4">
-        <h1 class="text-6xl font-bold">Dumpster Diver</h1>
+        <h1 class="text-6xl font-bold">The Lone Star Diver</h1>
         <p class="text-md">Tired of the crowds at the best places in town? Why not try the worst!</p>
     </header>
 
@@ -33,9 +33,16 @@
                 <div class="mb-4 mt-4">
                     <label for="dropdown-1" class="block">How Bad?</label>
                     <select class="border rounded w-full py-2 px-3" id="dropdown-1" name="dropdown-1">
-                        <option value="item-1">1 Star</option>
-                        <option value="item-2">2 Stars</option>
-                        <option value="item-3">3 Stars</option>
+                        <option value="1star">1 Star</option>
+                        <option value="2stars">2 Stars</option>
+                        <option value="3stars">3 Stars</option>
+                    </select>
+                    <label for="dropdown-2" class="block mt-4">What Type of Place?</label>
+                    <select class="border rounded w-full py-2 px-3" id="dropdown-2" name="dropdown-2">
+                        <option value="bar">Bar</option>
+                        <option value="cafe">Cafe</option>
+                        <option value="restaurant">Restaurant</option>
+                        <option value="store">Store</option>
                     </select>
                 </div>
         
@@ -104,7 +111,6 @@
                 <div id="sidebar">
                   <h2 class="text-3xl font-semibold mt-4">Places</h2>
                   <ul id="places" class="mt-4"></ul>
-                  <button id="more" class="bg-blue-500 text-white py-2 px-4 rounded-full w-full mt-3" >Load more results</button>
                 </div>
             </section>
           </div>
@@ -113,7 +119,7 @@
 
     <div class="grid grid-cols-1">
       <footer class="p-4">
-          <p class="text-center">&copy; VoyageMate America LLC</p>
+          <p class="text-center">&copy; LoneStar Enterprises LLC</p>
       </footer>
     </div>
 
