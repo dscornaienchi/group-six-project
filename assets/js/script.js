@@ -1,65 +1,97 @@
 var APIKey = "e8dad390ebbd6c69a9686f2a12eedb94";
+var service;
+var lat;
+var lon;
+var selectedType;
 
 $('#preferences-dropdowns').on('submit', function (event) {
   event.preventDefault();
 
   var cityName = $('#city-input').val().trim();
+  selectedType = $('#dropdown-2').val();
 
   if (cityName) {
-      // Construct the API URL for city data using the cityName
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`)
-          .then(function (response) {
-              return response.json();
-          })
-          .then(function (cityData) {
-              if (cityData.coord) {
-                  var lat = cityData.coord.lat;
-                  var lon = cityData.coord.lon;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (cityData) {
+        if (cityData.coord) {
+          lat = cityData.coord.lat;
+          lon = cityData.coord.lon;
 
-                  // call initMap with lat and lon
-                  initMap(lat,lon);
+          initMap(lat, lon);
 
-                  // Construct the API URL with the latitude and longitude
-                  var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
+          var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
 
-                  // Fetch weather forecast data from the new URL
-                  return fetch(forecastURL);
-              } else {
-                  alert('City coordinates not found.');
-              }
-          })
-          .then(function (forecastResponse) {
-              return forecastResponse.json();
-          })
-          .then(function (forecastData) {
-              console.log("Forecast data", forecastData);
-              // process and display the 5-day forecast
-              var dayNumber = 1;
-              for (var i = 0; i < forecastData.list.length; i++) {
-                  var forecastItem = forecastData.list[i];
-                  if (forecastItem.dt_txt.includes("15:00:00")) {
-                      var forecastDate = forecastItem.dt_txt;
-                      var forecastIconCode = forecastItem.weather[0].icon;
-                      var forecastTemp = forecastItem.main.temp;
-                      var forecastWind = forecastItem.wind.speed;
-                      var forecastHumidity = forecastItem.main.humidity;
+          return fetch(forecastURL);
+        } else {
+          alert('City coordinates not found.');
+        }
+      })
+      .then(function (forecastResponse) {
+        return forecastResponse.json();
+      })
+      .then(function (forecastData) {
+        console.log("Forecast data", forecastData);
+        var dayNumber = 1;
+        for (var i = 0; i < forecastData.list.length; i++) {
+          var forecastItem = forecastData.list[i];
+          if (forecastItem.dt_txt.includes("15:00:00")) {
+            var forecastDate = forecastItem.dt_txt;
+            var forecastIconCode = forecastItem.weather[0].icon;
+            var forecastTemp = forecastItem.main.temp;
+            var forecastWind = forecastItem.wind.speed;
+            var forecastHumidity = forecastItem.main.humidity;
 
-                      // update the HTML display with the forecast data
-                      updateCityForecast(dayNumber, forecastDate, forecastIconCode, forecastTemp, forecastWind, forecastHumidity);
-                      dayNumber++;
-                  }
-              }
-          })
-          .catch(function (error) {
-              console.log(error);
-              alert('Error fetching data. Please try again');
-          });
+            updateCityForecast(dayNumber, forecastDate, forecastIconCode, forecastTemp, forecastWind, forecastHumidity);
+            dayNumber++;
+          }
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert('Error fetching data. Please try again');
+      });
+
+    clearPlacesList();
+
   } else {
     alert('City coordinates not found.');
   }
 });
 
-// function to display the forecast in the City Forecast section
+function fetchPlaces(cityName, selectedType) {
+  const cityMap = {
+    lat: lat,
+    lng: lon,
+  };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: cityMap,
+    zoom: 12,
+  });
+  service = new google.maps.places.PlacesService(map);
+
+  const request = {
+    location: cityMap,
+    radius: 500,
+    type: selectedType,
+  };
+
+  // Perform a nearby search based on the selected type
+  service.nearbySearch(request, (results, status) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+    } else {
+      console.error('Error fetching places:', status);
+    }
+  });
+}
+
+function clearPlacesList() {
+  var placesList = document.getElementById("places");
+  placesList.innerHTML = '';
+}
+
 function updateCityForecast(dayNumber, forecastDate, forecastIconCode, forecastTempKelvin, forecastWind, forecastHumidity) {
   var forecastTempFahrenheit = Math.round((forecastTempKelvin - 273.15) * 9/5 + 32);
   var forecastIconURL = `https://openweathermap.org/img/w/${forecastIconCode}.png`;
@@ -69,20 +101,17 @@ function updateCityForecast(dayNumber, forecastDate, forecastIconCode, forecastT
   var forecastDayElement = document.getElementById(`forecast-day-${dayNumber}`);
 
   if (forecastDayElement) {
-      forecastDayElement.innerHTML = `
-          <h4>${formattedDate}</h4>
-          <img src="${forecastIconURL}" alt="Weather Icon">
-          <h4>Temp: ${forecastTempFahrenheit}°F</h4>
-          <h4>Wind: ${forecastWind} MPH</h4>
-          <h4>Humidity: ${forecastHumidity}%</h4>
-        `;
-    }
+    forecastDayElement.innerHTML = `
+      <h4>${formattedDate}</h4>
+      <img src="${forecastIconURL}" alt="Weather Icon">
+      <h4>Temp: ${forecastTempFahrenheit}°F</h4>
+      <h4>Wind: ${forecastWind} MPH</h4>
+      <h4>Humidity: ${forecastHumidity}%</h4>
+    `;
+  }
 }
 
-
-// google maps api
 function initMap(lat, lon) {
-  // Create the map.
   const cityMap = {
     lat: lat,
     lng: lon,
@@ -90,42 +119,23 @@ function initMap(lat, lon) {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: cityMap,
     zoom: 12,
-    // mapId: "d98de8ecbc6ba55",
   });
-  // Create the places service.
-  const service = new google.maps.places.PlacesService(map);
-  let getNextPage;
-  const moreButton = document.getElementById("more");
 
-  moreButton.onclick = function() {
-    moreButton.disabled = true;
-    if (getNextPage) {
-      getNextPage();
-    }
-  };
+  service = new google.maps.places.PlacesService(map);
 
-  // Perform a nearby search.
   service.nearbySearch({
-      location: cityMap,
-      radius: 500,
-      type: "cafe"
-    },
-    (results, status, pagination) => {
-      if (status !== "OK" || !results) return;
+    location: cityMap,
+    radius: 500,
+    type: selectedType
+  },
+  (results, status) => {
+    if (status !== "OK" || !results) return;
 
-      addPlaces(results, map);
-      moreButton.disabled = !pagination || !pagination.hasNextPage;
-      if (pagination && pagination.hasNextPage) {
-        getNextPage = () => {
-          // Note: nextPage will call the same handler function as the initial call
-          pagination.nextPage();
-        };
-      }
-    },
-  );
+    addPlaces(results, map, selectedType);
+  });
 }
 
-function addPlaces(places, map) {
+function addPlaces(places, map, selectedType) {
   const placesList = document.getElementById("places");
   for (const place of places) {
     if (place.geometry && place.geometry.location) {
@@ -144,8 +154,13 @@ function addPlaces(places, map) {
       //   position: place.geometry.location,
       // });
 
-      const li = document.createElement("li");
 
+  placesList.innerHTML = '';
+
+
+  for (const place of places) {
+    if (place.types.includes(selectedType)) {
+      const li = document.createElement("li");
       li.textContent = place.name+" "+place.rating;
       placesList.appendChild(li);
       li.addEventListener("click", () => {
@@ -156,3 +171,5 @@ function addPlaces(places, map) {
 }
 
 window.initMap = initMap;
+
+
