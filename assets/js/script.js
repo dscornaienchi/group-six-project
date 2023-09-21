@@ -3,12 +3,15 @@ var service;
 var lat;
 var lon;
 var selectedType;
+var rate;
 
 $('#preferences-dropdowns').on('submit', function (event) {
   event.preventDefault();
 
   var cityName = $('#city-input').val().trim();
   selectedType = $('#dropdown-2').val();
+  rate = $('#dropdown-1').val();
+ 
 
   if (cityName) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`)
@@ -75,6 +78,7 @@ function fetchPlaces(cityName, selectedType) {
     location: cityMap,
     radius: 500,
     type: selectedType,
+    rate,
   };
 
   // Perform a nearby search based on the selected type
@@ -125,7 +129,7 @@ function initMap(lat, lon) {
   service.nearbySearch({
     location: cityMap,
     radius: 500,
-    type: selectedType
+    type: selectedType    
   },
   (results, status) => {
     if (status !== "OK" || !results) return;
@@ -140,7 +144,7 @@ function addPlaces(places, map, selectedType) {
 
 
   for (const place of places) {
-    if (place.types.includes(selectedType)) {
+    if (place.types.includes(selectedType) && (place.rating=rate)) {
       
       var placeId = place.place_id;
       var service = new google.maps.places.PlacesService(document.createElement('div'));
