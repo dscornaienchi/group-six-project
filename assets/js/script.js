@@ -158,8 +158,13 @@ function addPlaces(places, map, selectedType) {
           var reviews = place.reviews;
           var reviewsContainer = document.getElementById('reviews-container');
 
-          // Pass the place's name to the updateReviews function
-          updateReviews(reviews, place.name);
+          // Show only the first review if available
+          if (reviews.length > 0) {
+            var firstReview = reviews[0];
+            var reviewElement = document.createElement('div');
+            reviewElement.innerHTML = '<h3>' + place.name + '</h3><p>' + firstReview.text + '</p>';
+            reviewsContainer.appendChild(reviewElement);
+          }
         }
       });
 
