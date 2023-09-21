@@ -53,8 +53,9 @@ $('#preferences-dropdowns').on('submit', function (event) {
         alert('Error fetching data. Please try again');
       });
 
+    // Clear existing places and reviews
     clearPlacesList();
-
+    clearReviews();
   } else {
     alert('City coordinates not found.');
   }
@@ -80,6 +81,8 @@ function fetchPlaces(cityName, selectedType) {
   // Perform a nearby search based on the selected type
   service.nearbySearch(request, (results, status) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+      // Add places to the map
+      addPlaces(results, map, selectedType);
     } else {
       console.error('Error fetching places:', status);
     }
@@ -89,6 +92,11 @@ function fetchPlaces(cityName, selectedType) {
 function clearPlacesList() {
   var placesList = document.getElementById("places");
   placesList.innerHTML = '';
+}
+
+function clearReviews() {
+  var reviewsContainer = document.getElementById('reviews-container');
+  reviewsContainer.innerHTML = '';
 }
 
 function updateCityForecast(dayNumber, forecastDate, forecastIconCode, forecastTempKelvin, forecastWind, forecastHumidity) {
@@ -138,30 +146,28 @@ function addPlaces(places, map, selectedType) {
   const placesList = document.getElementById("places");
   placesList.innerHTML = '';
 
-
   for (const place of places) {
     if (place.types.includes(selectedType)) {
-      
       var placeId = place.place_id;
       var service = new google.maps.places.PlacesService(document.createElement('div'));
 
       service.getDetails({
         placeId: placeId
-    }, function (place, status) {
+      }, function (place, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            var reviews = place.reviews;
-            var reviewsContainer = document.getElementById('reviews-container');
+          var reviews = place.reviews;
+          var reviewsContainer = document.getElementById('reviews-container');
 
-            reviews.forEach(function (review) {
-                var reviewElement = document.createElement('div');
-                reviewElement.innerHTML = '<h3>' + review.author_name + '</h3><p>' + review.text + '</p>';
-                reviewsContainer.appendChild(reviewElement);
-            });
+          reviews.forEach(function (review) {
+            var reviewElement = document.createElement('div');
+            reviewElement.innerHTML = '<h3>' + review.author_name + '</h3><p>' + review.text + '</p>';
+            reviewsContainer.appendChild(reviewElement);
+          });
         }
-    });
-      
+      });
+
       const li = document.createElement("li");
-      li.textContent = place.name+" "+place.rating;
+      li.textContent = place.name + " " + place.rating;
       placesList.appendChild(li);
       li.addEventListener("click", () => {
         map.setCenter(place.geometry.location);
