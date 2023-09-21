@@ -132,7 +132,7 @@ function initMap(lat, lon) {
 
   service.nearbySearch({
     location: cityMap,
-    radius: 500,
+    radius: 5000,
     type: selectedType
   },
   (results, status) => {
