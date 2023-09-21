@@ -33,7 +33,6 @@ $('#preferences-dropdowns').on('submit', function (event) {
         return forecastResponse.json();
       })
       .then(function (forecastData) {
-        console.log("Forecast data", forecastData);
         var dayNumber = 1;
         for (var i = 0; i < forecastData.list.length; i++) {
           var forecastItem = forecastData.list[i];
@@ -137,29 +136,30 @@ function initMap(lat, lon) {
 
 function addPlaces(places, map, selectedType) {
   const placesList = document.getElementById("places");
-  for (const place of places) {
-    if (place.geometry && place.geometry.location) {
-    //   const image = {
-    //     url: place.icon,
-    //     size: new google.maps.Size(71, 71),
-    //     origin: new google.maps.Point(0, 0),
-    //     anchor: new google.maps.Point(17, 34),
-    //     scaledSize: new google.maps.Size(25, 25),
-    //   };
-
-      // new google.maps.Marker({
-      //   map,
-      //   icon: image,
-      //   title: place.name,
-      //   position: place.geometry.location,
-      };
-
-    }
   placesList.innerHTML = '';
 
 
   for (const place of places) {
     if (place.types.includes(selectedType)) {
+      
+      var placeId = place.place_id;
+      var service = new google.maps.places.PlacesService(document.createElement('div'));
+
+      service.getDetails({
+        placeId: placeId
+    }, function (place, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            var reviews = place.reviews;
+            var reviewsContainer = document.getElementById('reviews-container');
+
+            reviews.forEach(function (review) {
+                var reviewElement = document.createElement('div');
+                reviewElement.innerHTML = '<h3>' + review.author_name + '</h3><p>' + review.text + '</p>';
+                reviewsContainer.appendChild(reviewElement);
+            });
+        }
+    });
+      
       const li = document.createElement("li");
       li.textContent = place.name+" "+place.rating;
       placesList.appendChild(li);
