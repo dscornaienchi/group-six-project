@@ -158,11 +158,8 @@ function addPlaces(places, map, selectedType) {
           var reviews = place.reviews;
           var reviewsContainer = document.getElementById('reviews-container');
 
-          reviews.forEach(function (review) {
-            var reviewElement = document.createElement('div');
-            reviewElement.innerHTML = '<h3>' + review.author_name + '</h3><p>' + review.text + '</p>';
-            reviewsContainer.appendChild(reviewElement);
-          });
+          // Pass the place's name to the updateReviews function
+          updateReviews(reviews, place.name);
         }
       });
 
@@ -174,6 +171,17 @@ function addPlaces(places, map, selectedType) {
       });
     }
   }
+}
+
+function updateReviews(reviews, placeName) {
+  var reviewsContainer = document.getElementById('reviews-container');
+  reviewsContainer.innerHTML = '';
+
+  reviews.forEach(function (review) {
+    var reviewElement = document.createElement('div');
+    reviewElement.innerHTML = '<h3>' + placeName + '</h3><p>' + review.text + '</p>';
+    reviewsContainer.appendChild(reviewElement);
+  });
 }
 
 window.initMap = initMap;
