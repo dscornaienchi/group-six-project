@@ -148,37 +148,37 @@ function initMap(lat, lon) {
 
 function addPlaces(places, map, selectedType) {
   const placesList = document.getElementById("places");
+  const reviewsContainer = document.getElementById('reviews-container');
   placesList.innerHTML = '';
-
+  reviewsContainer.innerHTML = '';
   for (const place of places) {
-
     if (place.types.includes(selectedType)) {
       var placeId = place.place_id;
       var service = new google.maps.places.PlacesService(document.createElement('div'));
-
       service.getDetails({
         placeId: placeId
       }, function (place, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
+          // Add the place to the list of places
+          const li = document.createElement("li");
+          if (place.rating <= rate) {
+            li.textContent = place.name + " " + place.rating;
+            placesList.appendChild(li);
+          }
           var reviews = place.reviews;
-          var reviewsContainer = document.getElementById('reviews-container');
-
-          // Show only the first review if available
+          // Show only the first review with a rating of 3 stars or less if available
           if (reviews.length > 0) {
-            var firstReview = reviews[getRandomInt(reviews.length)];
-            if (place.rating<=rate) {
-            var reviewElement = document.createElement('div');
-            reviewElement.innerHTML = '<h3>' + place.name + " - " + firstReview.rating + '</h3><p>' + firstReview.text + '</p>';
-            reviewsContainer.appendChild(reviewElement);
+            var firstReview = reviews.find(review => review.rating <= 3);
+            if (firstReview) {
+              var reviewElement = document.createElement('div');
+              reviewElement.innerHTML = '<h3>' + place.name + " - " + firstReview.rating + '</h3><p>' + firstReview.text + '</p>';
+              reviewsContainer.appendChild(reviewElement);
             }
           }
         }
       });
-
       const li = document.createElement("li");
-      
-      
-      if (place.rating<=rate) {
+      if (place.rating <= rate) {
         li.textContent = place.name + " " + place.rating;
         placesList.appendChild(li);
       }
@@ -187,17 +187,6 @@ function addPlaces(places, map, selectedType) {
       });
     }
   }
-}
-
-function updateReviews(reviews, placeName) {
-  var reviewsContainer = document.getElementById('reviews-container');
-  reviewsContainer.innerHTML = '';
-
-  reviews.forEach(function (review) {
-    var reviewElement = document.createElement('div');
-    reviewElement.innerHTML = '<h3>' + placeName + '</h3><p>' + review.text + '</p>';
-    reviewsContainer.appendChild(reviewElement);
-  });
 }
 
 function getRandomInt(max) {
