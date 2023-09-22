@@ -16,7 +16,7 @@ The website can be found at the URL here: https://dscornaienchi.github.io/lone-s
 
 The website should look like the screenshot below: 
 
-<img src="INSERT LINK" alt="Website screenshot">
+<img src="./images/Lone-Star-Diver-Screenshot.jpg" alt="Website screenshot">
 
 ## Credits
 

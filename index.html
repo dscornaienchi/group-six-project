@@ -22,10 +22,10 @@
 
 
 <body>
-  <header class=" text-white p-4 rounded-lg">
-    <h1 class="text-6xl font-bold">Lone Star Diver</h1>
-    <p class="text-md">Tired of the crowds at the best places in town? Why not try the worst!</p>
-</header>
+    <header class="text-white p-4">
+        <h1 class="text-6xl font-bold">Lone Star Diver</h1>
+        <p class="text-md">Don't be fooled! Research the worst reviews of the best places</p>
+    </header>
 
     <main class="container mx-auto p-4">
         <div class="grid grid-cols-1 md:grid-cols-2">
@@ -97,10 +97,21 @@
               
         </div>
 
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 ">
       <section id="cities" class="bg-white p-4 rounded-lg ">
         <h2 class="text-3xl font-semibold">Reviews</h2>
-        <ul id="reviews-container" class="mt-4"></ul>
+        <ul id="reviews-container" class="mt-4">
+
+        </ul>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      <section id="cities" class="bg-white p-4 rounded-lg shadow-xl hover:shadow-2xl">
+        <h2 class="text-3xl font-semibold">The Bad Reviews</h2>
+        <ul id="reviews-container" class="mt-4">
+         
+        </ul>
+
       </section>
 
           <div class="">
@@ -129,8 +140,7 @@
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"></script>
   <!-- google maps script -->
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqtdI1aBEs2FFMXL3QYWPcv7pCW_ZWtk0&callback=initMap&libraries=places"></script>
-  "></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqtdI1aBEs2FFMXL3QYWPcv7pCW_ZWtk0&callback=initMap&libraries=places"></script></script>
 </body>
 
 </html>
