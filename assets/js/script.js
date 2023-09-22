@@ -128,7 +128,7 @@ function initMap(lat, lon) {
   };
   const map = new google.maps.Map(document.getElementById("map"), {
     center: cityMap,
-    zoom: 12,
+    zoom: 15,
   });
 
   service = new google.maps.places.PlacesService(map);
@@ -165,10 +165,10 @@ function addPlaces(places, map, selectedType) {
 
           // Show only the first review if available
           if (reviews.length > 0) {
-            var firstReview = reviews[0];
+            var firstReview = reviews[getRandomInt(reviews.length)];
             if (place.rating<=rate) {
             var reviewElement = document.createElement('div');
-            reviewElement.innerHTML = '<h3>' + place.name + '</h3><p>' + firstReview.text + '</p>';
+            reviewElement.innerHTML = '<h3>' + place.name + " - " + firstReview.rating + '</h3><p>' + firstReview.text + '</p>';
             reviewsContainer.appendChild(reviewElement);
             }
           }
@@ -199,5 +199,10 @@ function updateReviews(reviews, placeName) {
     reviewsContainer.appendChild(reviewElement);
   });
 }
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 
 window.initMap = initMap;
