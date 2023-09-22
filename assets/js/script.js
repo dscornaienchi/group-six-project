@@ -77,9 +77,8 @@ function fetchPlaces(cityName, selectedType) {
 
   const request = {
     location: cityMap,
-    radius: 500,
+    radius: 50000,
     type: selectedType,
-    rate,
   };
 
   // Perform a nearby search based on the selected type
@@ -136,7 +135,7 @@ function initMap(lat, lon) {
 
   service.nearbySearch({
     location: cityMap,
-    radius: 5000,
+    radius: 50000,
     type: selectedType
 
   },
@@ -153,7 +152,7 @@ function addPlaces(places, map, selectedType) {
 
   for (const place of places) {
 
-    if (place.types.includes(selectedType) && (place.rating=rate)) {
+    if (place.types.includes(selectedType)) {
       var placeId = place.place_id;
       var service = new google.maps.places.PlacesService(document.createElement('div'));
 
@@ -167,16 +166,22 @@ function addPlaces(places, map, selectedType) {
           // Show only the first review if available
           if (reviews.length > 0) {
             var firstReview = reviews[0];
+            if (place.rating<=rate) {
             var reviewElement = document.createElement('div');
             reviewElement.innerHTML = '<h3>' + place.name + '</h3><p>' + firstReview.text + '</p>';
             reviewsContainer.appendChild(reviewElement);
+            }
           }
         }
       });
 
       const li = document.createElement("li");
-      li.textContent = place.name + " " + place.rating;
-      placesList.appendChild(li);
+      
+      
+      if (place.rating<=rate) {
+        li.textContent = place.name + " " + place.rating;
+        placesList.appendChild(li);
+      }
       li.addEventListener("click", () => {
         map.setCenter(place.geometry.location);
       });
