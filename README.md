@@ -14,9 +14,9 @@ The Github repository can be found here: https://github.com/dscornaienchi/lone-s
 
 The website can be found at the URL here: https://dscornaienchi.github.io/lone-star-diver
 
-The website should look like the screenshot below: 
+The website should look like the screenshot below:
 
-<img src="./images/Lone-Star-Diver-Screenshot.jpg" alt="Website screenshot">
+<img width="1263" alt="Lone_Star_Diver-Screenshot" src="https://github.com/dscornaienchi/lone-star-diver/assets/114834869/489ba334-5d3b-445d-98c4-47ae9e375706">
 
 ## Credits
 
